@@ -33,13 +33,7 @@ removeIllegal <- function(rawString) {
 # Find columns pertaining to mean and standard deviation
 mean_std_cols <- grep('mean|std', featureNames[,2])
 feature_data <- features[,mean_std_cols]
-colnames(feature_data) <- featureNames[mean_std_cols,2]
-
-
-# colnames(features) <- featureNames[,2]
-# colnames(features) <- lapply(featureNames[,2],removeIllegal)
-# library(dplyr)
-
+colnames(feature_data) <- lapply(featureNames[mean_std_cols,2],removeIllegal)
 
 
 # Load Activity values
@@ -50,6 +44,7 @@ activityTest <- read.table(unz('galaxy.zip', activityTestFile))
 activities <- rbind(activityTrain, activityTest)
 activities$V1 <- as.factor(activities$V1)
 colnames(activities) <- c('activity')
+
 
 # Load Activity Names
 activityNameFile <- paste(folderName, 'activity_labels.txt', sep='')
@@ -69,10 +64,6 @@ rm(activityTest)
 # Merge 
 fullData <- cbind(subjects, feature_data, activities)
 
-
-
-
-# activitiesFactor <- as.factor(activities$V1)
 
 #1 Merges the training and the test sets to create one data set.
 #2 Extracts only the measurements on the mean and standard deviation for each measurement.
