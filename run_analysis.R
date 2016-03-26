@@ -66,13 +66,8 @@ rm(activityTest)
 fullData <- cbind(subjects, feature_data, activities)
 
 
-#1 Merges the training and the test sets to create one data set.
-#2 Extracts only the measurements on the mean and standard deviation for each measurement.
-#3 Uses descriptive activity names to name the activities in the data set
-#4 Appropriately labels the data set with descriptive variable names.
-#5 From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-
-
+#5 From the data set in step 4, creates a second, independent tidy data set with the average of 
+# each variable for each activity and each subject.
 
 library(dplyr)
 by_subj_act <- group_by(fullData, subject, activity)
@@ -146,5 +141,7 @@ summary_data <- summarize(by_subj_act ,tBodyAcc_mean_X = mean(tBodyAcc_mean_X),
 	fBodyBodyGyroJerkMag_std = mean(fBodyBodyGyroJerkMag_std),
 	fBodyBodyGyroJerkMag_meanFreq = mean(fBodyBodyGyroJerkMag_meanFreq) )
 
-# Write out the tidy data set for submission
-# write.table(fullData, "tidy_dataset.txt", row.names=FALSE)
+# Write out the summary data set for submission
+# write.table(summary_data, "summary_dataset.txt", row.names=FALSE)
+
+

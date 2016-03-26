@@ -41,6 +41,10 @@ In addition to the feature data each row contains columns:
 subject - An integer between 1 and 30 representing the test subject the row pertains to.
 activity - The activity the subject was performing at the time, one of WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
 
+
+The summary dataset contains the mean value of each variable, gouped by activity and subject.
+
+
 ## Licence 
 This Licence was in the original dataset
 
